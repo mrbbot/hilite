@@ -1,0 +1,27 @@
+{
+  "name": "@mrbbot/hilite",
+  "description": "Bulk code highlighter with HTML/PDF export",
+  "version": "1.0.0",
+  "main": "src/highlight.js",
+  "license": "MIT",
+  "bin": {
+    "hilite": "./src/cli.js"
+  },
+  "dependencies": {
+    "asyncro": "^3.0.0",
+    "gauge": "^2.7.4",
+    "globby": "^8.0.1",
+    "lodash": "^4.17.10",
+    "prismjs": "^1.15.0",
+    "puppeteer": "^1.6.0",
+    "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^1.5.0",
+    "@types/yargs": "^11.1.0",
+    "prettier": "^1.13.7"
+  },
+  "files": [
+    "src"
+  ]
+}
