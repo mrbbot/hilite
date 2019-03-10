@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
-const prism = require("prismjs");
+const juice = require("juice");
 const _template = require("lodash/template");
 const languages = require("./languages");
 // noinspection JSUnresolvedFunction
@@ -26,12 +26,13 @@ async function generateHTML(highlighted, theme, progressCallback) {
   if (!fs.existsSync(prismThemePath)) prismThemePath = path.resolve(theme);
 
   const prismTheme = await readFile(prismThemePath);
+  const htmlWithTheme = `<style>${prismTheme}</style>${highlighted}`;
+  const htmlWithInlinedTheme = juice(htmlWithTheme);
 
   progressCallback("html", 0.8, "generate html");
 
   return outputTemplate({
-    highlighted: highlighted,
-    prismTheme: prismTheme
+    highlighted: htmlWithInlinedTheme
   });
 }
 

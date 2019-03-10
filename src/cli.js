@@ -20,6 +20,10 @@ const argv = require("yargs")
     "highlight files in the src directory using a 1cm margin for the pdf"
   )
   .example(
+    "$0 src -l 2",
+    "highlight files in the src directory with headers at the 2nd level"
+  )
+  .example(
     "$0 src -p false",
     "highlight files in the src directory without creating a pdf, only a html file"
   )
@@ -44,6 +48,12 @@ const argv = require("yargs")
       type: "string",
       default: "0.5cm"
     },
+    l: {
+      alias: "level",
+      describe: "header level for file headers",
+      type: "number",
+      default: 1
+    },
     p: {
       alias: "pdf",
       describe: "whether to generate a pdf",
@@ -63,7 +73,7 @@ const progressCallback = (section, completed, message) => {
 };
 
 // noinspection JSUnresolvedFunction
-highlight(argv._, progressCallback)
+highlight(argv._, argv.level, progressCallback)
   .then(highlighted => generateHTML(highlighted, argv.theme, progressCallback))
   .then(html =>
     save(html, argv.output, argv.margin, argv.pdf, progressCallback)

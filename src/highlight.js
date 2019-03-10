@@ -6,7 +6,7 @@ const files = require("./files");
 
 const images = ["png", "jpg", "jpeg", "gif", "svg"];
 
-async function highlight(globs, progressCallback) {
+async function highlight(globs, headerLevel, progressCallback) {
   progressCallback("glob", 0, "");
   const matched = await files(globs);
   progressCallback("glob", 0.2, "");
@@ -56,7 +56,9 @@ async function highlight(globs, progressCallback) {
 
       return result;
     })
-    .map(file => `<h1>${file.name}</h1>${file.result}`)
+    .map(
+      file => `<h${headerLevel}>${file.name}</h${headerLevel}>${file.result}`
+    )
     .join("");
 }
 

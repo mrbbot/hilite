@@ -71,6 +71,14 @@ If you had a custom theme stored in `theme.css`, you could use it with the follo
 hilite src -t theme.css
 ```
 
+### Heading Level
+You can change the level of the code filename headings with the `--level` (`-l`) flag. For instance to use `<h2>` tags
+instead of the default `<h1>`s:
+
+```bash
+hilite src -l 2
+```
+
 ### Margin
 Finally, you can also change the amount of margin in the PDF export using the `--margin` (`-m`) flag.
 
